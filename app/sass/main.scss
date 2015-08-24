@@ -1,0 +1,484 @@
+// bower:scss
+@import 'bourbon';
+@import 'grid';
+
+$primaryColor: #00b3e3;
+$primaryLight: #ecf7fa;
+$secondaryColor: #6ebe4a;
+$secondaryMid: #c6e6b6;
+$secondaryLight: #f2f8eb;
+$linkColor: $primaryColor;
+$hoverColor: lighten($linkColor, 10);
+@import 'forms';
+
+$total_width: 100%;
+$container_margin: 0;
+$gutter_width: 3.84%;
+$max_width: 1100px;
+$class_column: 'col-';
+$class_push: 'push-';
+
+$screen-small: 500px;
+$screen-medium: 768px;
+$screen-large: 1024px;
+$screen-xlarge: 1200px;
+
+@include generate_helper_classes();
+.col-sm-12 {
+	@media screen and (max-width: $screen-small - 1) {
+		margin-left: auto!important;
+		width: 100%;
+	}
+}
+.col-md-12 {
+	@media screen and (max-width: $screen-medium - 1) {
+		margin-left: auto!important;
+		width: 100%;
+	}
+}
+
+*, *::before, *::after {box-sizing: border-box;}
+
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+// endbower 
+
+// $borderColor: #b3b3b3;
+
+.text-primary {color: $primaryColor;}
+.text-secondary {color: $secondaryColor;}
+
+.ttu {text-transform: uppercase;}
+.tac {text-align: center;}
+.tar {text-align: right;}
+
+img {
+	max-width: 100%;
+	vertical-align: top;
+}
+
+body {
+	font-family: "Gotham", $helvetica;
+	font-size: 18px;
+	color: #1a1a1a;
+	line-height: 1.35;
+	color: #1a1a1a;
+	@media screen and (min-width: $screen-small) {
+		font-size: 22px;
+	}
+}
+.container {
+	@include container();
+	@include clearfix();
+	max-width: $max_width;
+	padding-left: 5%;
+	padding-right: 5%;
+	@media screen and (min-width: $screen-medium) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.main {
+	}
+}
+.row {
+	@include clearfix;
+	@media screen and (min-width: $screen-small) {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		&> :not(:first-child) {
+			margin-left: $gutter_width - .16%;
+		}
+		.fo1 {
+			order: 1;
+			margin-left: $gutter_width - .16;
+			& + * {
+				margin-left: 0;
+			}
+		}
+	}
+}
+h1, h2, h3 {
+	line-height: 1.1;
+}
+p {
+	@media screen and (min-width: $screen-small) {
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+.padded-img {
+	padding: 10%;
+	text-align: center;
+	@media screen and (min-width: $screen-small) {
+		padding: 0 10px;
+	}
+}
+
+.rel1 {
+	position: relative;
+	z-index: 1;
+}
+.btn {
+	border: none;
+	box-shadow: none;
+	display: inline-block;
+	background: #7fd1ee;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 1px;
+	padding: 8px 25px;
+	border-radius: 20px;
+	color: #fff;
+	position: relative;
+	&.mb {
+		margin-bottom: 35px;
+	}
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #00b3e3;
+		top: 0;
+		left: 0;
+		margin-top: 5px;
+		border-radius: 20px;
+		z-index: -1;
+		transition: .1s all ease-out;
+	}
+	&:hover {
+		color: #fff;
+		&::before {
+			margin-top: 7px;
+		}
+	}
+}
+
+nav {
+	padding: 20px 0;
+	text-align: center;
+	@media screen and (min-width: $screen-small) {
+		padding: 20px;
+	}
+	@media screen and (min-width: $screen-medium) {
+		padding: 70px 0;
+		display: flex;
+	}
+	a {
+		display: block;
+		font-size: 19px;
+		font-weight: 400;
+		line-height: 40px;
+		color: $primaryColor;
+		position: relative;
+		padding: 5px 10px;
+		&:first-child {
+			margin-right: -6px;
+		}
+		&.active,
+		&:focus,
+		&:hover {
+			color: $secondaryColor;
+		}
+		@media screen and (min-width: $screen-small) {
+			display: inline-block;
+			padding: 5px;
+			font-size: 16px;
+		}
+		@media screen and (min-width: $screen-medium) {
+			display: inline-block;
+			vertical-align: top;
+			padding: 0 10px;
+			flex-grow: 1;
+			&:first-child {
+				margin-left: -3%;
+				margin-right: auto;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				right: -2px;
+				width: 4px;
+				background: $secondaryColor;
+				height: 160%;
+				top: -30%;
+			}
+		}
+	}
+}
+.header {
+	&.home {background: url(../images/header-home.jpg) no-repeat center center / cover;}
+	&.location {background: url(../images/header-location.jpg) no-repeat center center / cover;}
+	&.schedule {background: url(../images/header-schedule.jpg) no-repeat center center / cover;}
+	&.register {background: url(../images/header-register.jpg) no-repeat center center / cover;}
+	&.contact {background: url(../images/header-contact.jpg) no-repeat center center / cover;}
+	border: 8px solid $primaryColor;
+	border-right: none;
+	border-left: none;
+	padding: 65px 0 150px;
+	@media screen and (min-width: $screen-small) {
+		margin-bottom: 80px;
+	}
+	h2 {
+		font-weight: 500;
+		font-size: 40px;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		@media screen and (min-width: $screen-small) {
+			font-size: 60px;
+		}
+	}
+	.subhead {
+		font-weight: 500;
+		font-size: 25px;
+		max-width: 730px;
+		margin: 0;
+	}
+}
+.main {
+	&> .row {
+		padding: 30px 0;
+		@media screen and (min-width: $screen-small) {
+			padding: 60px 0;
+		}
+		&:first-child {
+			padding-top: 0;
+		}
+	}
+	.push-1 {
+		p {
+			max-width: 750px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+	p {
+		line-height: 1.5;
+		font-weight: 400;
+		&.lead {
+			font-weight: 500;
+		}
+		@media screen and (min-width: $screen-small) {
+			&:not(:last-child) {
+				margin-bottom: 40px;
+			}
+		}
+	}
+	.panel {
+		padding: 30px;
+		&, &.primary {
+			background: $primaryLight;
+		}
+		&.secondary,
+		&:nth-child(2n) {
+			background: $secondaryLight;
+		}
+	}
+	form {
+		margin-top: 40px;
+		.panel {
+			padding: 5% 8%;
+		}
+		h3 {
+			font-weight: 500;
+			color: $primaryColor;
+			text-transform: uppercase;
+			margin: 1.1em 0 .7em;
+		}
+		p {
+			margin-top: 0;
+		}
+		input[type=text],
+		input[type=email],
+		input[type=number],
+		textarea
+		 {
+			background: $secondaryMid;
+			color: #fff;
+			border: 1px solid $secondaryMid;
+			outline: none;
+			box-shadow: none;
+			font-weight: 500;
+			display: block;
+			padding: .6em .8em .5em;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		.dropdown-open {
+			background: $secondaryMid;
+			color: #fff;
+			text-transform: uppercase;
+			display: block;
+			font-weight: 500;
+			padding: 14px 19px;
+		}
+		.date-dropdown {
+			background: #abda92;
+			padding: 15px 0;
+			text-align: center;
+			input {
+				appearance: none;
+				&:checked + label {
+					color: $secondaryColor;
+				}
+			}
+			label {
+				color: #fff;
+				display: inline-block;
+				border-right: 3px solid $secondaryColor;
+				padding: 17px 14px;
+				font-weight: 500;
+				margin-left: -.6em;
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+.schedule {
+	h3 {
+		font-weight: 500;
+	    font-size: 30px;
+	}
+	.panel {
+		@include clearfix;
+		h4, p {
+			line-height: 27px;
+		}
+		h4 {
+			font-weight: 500;
+			font-size: 26px;
+			margin: 0 0 8px;
+		}
+		p {
+			margin: 0;
+		}
+		.time {
+			font-size: 24px;
+		}
+		&, &.primary {
+			h4, p {
+				color: $primaryColor;
+			}
+		}
+		&.secondary,
+		&:nth-child(2n) {
+			h4, p {
+				color: $secondaryColor;
+			}
+		}
+		&+ .panel {
+			margin-top: 25px;
+		}
+	}
+}
+
+.location {
+	.panel {
+		padding: 5% 8%;
+	}
+}
+
+.tabs-container {
+	text-align: center;
+	.tabs-menu {
+		list-style: none;
+		padding-left: 0;
+		margin: 40px 0;
+		@media screen and (max-width: $screen-small - 1) {
+			margin: -70px 0 10px;
+		}
+		li {
+			display: inline-block;
+			position: relative;
+			font-size: 19px;
+			padding: 0 2.1%;
+			a {
+				color: $primaryColor;
+				text-transform: uppercase;
+				line-height: 48px;
+				padding: 0 10px;
+			}
+			&.active {
+  				a {
+  					color: $secondaryColor;
+  				}
+			}
+			&:first-child::before,
+			&::after {
+				content: '';
+				position: absolute;
+				right: -4px;
+				width: 4px;
+				background: $secondaryColor;
+				height: 160%;
+				top: -30%;
+			}
+			&:first-child::before {
+				right: auto;
+				left: -4px;
+			}
+			@media screen and (max-width: $screen-small - 1) {
+				display: block;
+				padding: 5px 0;
+				&::after,
+				&::before {
+					display: none;
+				}
+			}
+		}
+	}
+	.tab-content {
+		text-align: left;
+		display: none;
+		&.active {
+			display: block;
+		}
+	}
+}
+
+@include placeholder { 
+   text-transform: uppercase;
+   color: #fff;
+}
+
+.footer {
+	@include column(12);
+	padding: 60px 0;
+	text-align: center;
+	background: #dcddde;
+	color: #fff;
+	margin-top: 60px;
+	p {
+		font-size: 18px;
+		margin: 0;
+		font-weight: 300;
+	}
+}
+a {
+	color: $linkColor;
+	text-decoration: none;
+	&:hover {
+		color: $hoverColor;
+	}
+}
